@@ -1,0 +1,98 @@
+<!-- index.wxml -->
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <view class="search-input">
+      <input type="text" placeholder="搜索村落、景点、民宿..." placeholder-class="placeholder" />
+    </view>
+  </view>
+  <!-- <view class="top-search-bar">
+    <view class="city-section" bindtap="switchCity">
+      <text class="city-name">{{currentCity}}</text>
+      <image class="city-arrow" mode="aspectFit"></image>
+    </view>
+    <view class="search-section" bindtap="focusSearch">
+      <input 
+        class="search-input" 
+        type="text" 
+        placeholder="搜索村落、景点、民宿..." 
+        placeholder-class="placeholder"
+        confirm-type="search"
+        bindconfirm="onSearchConfirm"
+        bindinput="onSearchInput"
+        bindfocus="onSearchFocus"
+        bindblur="onSearchBlur"
+        value="{{searchKeyword}}"
+      />
+    </view>
+  </view> -->
+
+  <!-- 轮播图 -->
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="500" bindtap="viewAllPhotos">
+    <swiper-item wx:for="{{photoList}}" wx:key="id" bindtap="viewPhoto" data-index="{{index}}">
+      <view class="swiper-item swiper-item-1">
+        <view class="swiper-content">
+        <image class="swiper-image" src="{{item.image}}" mode="widthFix" ></image>
+          <text class="swiper-desc">{{item.description}}</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 功能入口 -->
+  <view class="entrance-section">
+    <view class="section-title">
+      <text class="section-title-text">特色功能</text>
+      <view class="section-title-line"></view>
+    </view>
+    <view class="entrance-grid">
+      <view class="entrance-item" bindtap="navigateToVillageList">
+        <view class="entrance-icon">🏘️</view>
+        <text class="entrance-text">村落探索</text>
+      </view>
+      <view class="entrance-item" bindtap="navigateToRoutes">
+        <view class="entrance-icon">🗺️</view>
+        <text class="entrance-text">路线规划</text>
+      </view>
+      <view class="entrance-item" bindtap="navigateToExperience">
+        <view class="entrance-icon">🎎</view>
+        <text class="entrance-text">民俗体验</text>
+      </view>
+      <view class="entrance-item" bindtap="navigateToHomestay">
+        <view class="entrance-icon">🏡</view>
+        <text class="entrance-text">民宿预订</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 推荐村落 -->
+  <view class="recommend-section">
+    <view class="section-title">
+      <text class="section-title-text">热门推荐</text>
+      <view class="section-title-line"></view>
+    </view>
+    
+    <view class="recommend-list">
+      <view class="recommend-item" wx:for="{{villageList}}" wx:key="id" bindtap="navigateToVillageDetail" data-id="{{item.id}}">
+        <image class="recommend-img" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="recommend-content">
+          <view class="recommend-info">
+            <text class="recommend-title">{{item.name}}</text>
+            <view class="recommend-tags">
+              <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+            </view>
+            <view class="recommend-desc">{{item.description}}</view>
+            <view class="recommend-footer">
+              <view class="recommend-location">
+                <image class="location-icon" src="https://cdn-icons-png.flaticon.com/512/684/684908.png" mode="aspectFit"></image>
+                <text class="location-text">{{item.location}}</text>
+              </view>
+              <view class="recommend-distance">{{item.distance}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

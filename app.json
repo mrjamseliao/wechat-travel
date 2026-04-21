@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/assistant/index",
+    "pages/village/index",
+    "pages/village/detail",
+    "pages/my/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1a6840",
+    "navigationBarTitleText": "村落云游",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#1a6840",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/assistant/index",
+        "text": "AI助手"
+      },
+      {
+        "pagePath": "pages/village/index",
+        "text": "村落"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

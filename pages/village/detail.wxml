@@ -1,0 +1,198 @@
+<!--pages/village/detail.wxml-->
+<!-- 村落详情页面 -->
+<view class="container">
+  <!-- 主要内容区域 -->
+  <scroll-view class="main-content" scroll-y scroll-with-animation enhanced>
+    <!-- 村落主图 -->
+    <view class="village-hero">
+      <image class="hero-image" 
+        src="https://images.unsplash.com/photo-1528164344705-47542687000d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+        mode="widthFix" lazy-load >
+        <view class="hero-overlay"></view>
+      </image>
+      <view class="hero-content">
+        <text class="village-name">云水谣古村落</text>
+        <view class="hero-actions">
+          <view class="action-btn" bindtap="onFavorite">
+            <image class="action-icon" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" mode="aspectFit"></image>
+            <text class="action-text">{{isFavorite ? '已收藏' : '收藏'}}</text>
+          </view>
+          <view class="action-btn" bindtap="onNavigate">
+            <image class="action-icon" src="https://cdn-icons-png.flaticon.com/512/854/854878.png" mode="aspectFit"></image>
+            <text class="action-text">导航</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 基本信息卡片 -->
+    <view class="info-card">
+      <view class="card-header">
+        <text class="card-title">基本信息</text>
+      </view>
+      
+      <view class="village-tags">
+        <view class="tag-item tag-guzhen">
+          <text class="tag-text">古镇</text>
+        </view>
+        <view class="tag-item tag-heritage">
+          <text class="tag-text">文化遗产</text>
+        </view>
+        <view class="tag-item tag-photo">
+          <text class="tag-text">摄影</text>
+        </view>
+      </view>
+      
+      <view class="info-item">
+        <image class="info-icon" src="https://cdn-icons-png.flaticon.com/512/684/684908.png" mode="aspectFit"></image>
+        <view class="info-content">
+          <text class="info-label">位置</text>
+          <text class="info-value">浙江省丽水市</text>
+        </view>
+      </view>
+      
+      <view class="info-item">
+        <image class="info-icon" src="https://cdn-icons-png.flaticon.com/512/2088/2088617.png" mode="aspectFit"></image>
+        <view class="info-content">
+          <text class="info-label">距离</text>
+          <text class="info-value">距您120km</text>
+        </view>
+      </view>
+      
+      <view class="info-item">
+        <image class="info-icon" src="https://cdn-icons-png.flaticon.com/512/2972/2972544.png" mode="aspectFit"></image>
+        <view class="info-content">
+          <text class="info-label">最佳游览时间</text>
+          <text class="info-value">全年皆宜，春秋最佳</text>
+        </view>
+      </view>
+      
+      <view class="info-item">
+        <image class="info-icon" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" mode="aspectFit"></image>
+        <view class="info-content">
+          <text class="info-label">预计游览时长</text>
+          <text class="info-value">1-2天</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 村落介绍 -->
+    <view class="info-card">
+      <view class="card-header">
+        <text class="card-title">村落介绍</text>
+      </view>
+      <view class="village-description">
+        <text class="description-text">保存完好的明清古建筑群，小桥流水人家，体验千年历史的文化沉淀。云水谣古村落位于浙江省丽水市，是一处保存完好的明清时期古建筑群落。这里依山傍水，古街、古桥、古宅错落有致，完整展现了江南水乡的传统风貌。</text>
+      </view>
+    </view>
+
+    <!-- 特色亮点 -->
+    <view class="info-card">
+      <view class="card-header">
+        <text class="card-title">特色亮点</text>
+      </view>
+      <view class="highlights-list">
+        <view class="highlight-item">
+          <view class="highlight-icon">🏯</view>
+          <view class="highlight-content">
+            <text class="highlight-title">明清古建筑群</text>
+            <text class="highlight-desc">保存完好的明清时期民居建筑，雕梁画栋，工艺精湛</text>
+          </view>
+        </view>
+        <view class="highlight-item">
+          <view class="highlight-icon">🌉</view>
+          <view class="highlight-content">
+            <text class="highlight-title">小桥流水人家</text>
+            <text class="highlight-desc">蜿蜒的小河穿村而过，石拱桥连接两岸，江南水乡典型景致</text>
+          </view>
+        </view>
+        <view class="highlight-item">
+          <view class="highlight-icon">📸</view>
+          <view class="highlight-content">
+            <text class="highlight-title">摄影圣地</text>
+            <text class="highlight-desc">四季皆景，尤其清晨和黄昏时分，光影效果极佳</text>
+          </view>
+        </view>
+        <view class="highlight-item">
+          <view class="highlight-icon">🎎</view>
+          <view class="highlight-content">
+            <text class="highlight-title">民俗文化</text>
+            <text class="highlight-desc">传统手工艺、地方戏曲、民俗节庆活动丰富多彩</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 图片展示 -->
+    <view class="info-card">
+      <view class="card-header">
+        <text class="card-title">村落风光</text>
+        <view class="see-all" bindtap="viewAllPhotos">查看全部</view>
+      </view>
+      <scroll-view class="photo-gallery" scroll-x>
+        <view class="photo-list">
+          <view class="photo-item" wx:for="{{photoList}}" wx:key="id" bindtap="viewPhoto" data-index="{{index}}">
+            <image class="photo" src="{{item.url}}" mode="aspectFill"></image>
+            <view class="photo-label">{{item.label}}</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 实用贴士 -->
+    <view class="info-card tips-card">
+      <view class="card-header">
+        <text class="card-title">实用贴士</text>
+      </view>
+      <view class="tips-list">
+        <view class="tip-item" wx:for="{{tipsList}}" wx:key="*this">
+          <view class="tip-index">{{index + 1}}.</view>
+          <view class="tip-content">{{item}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="bottom-space"></view>
+  </scroll-view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="bottom-actions">
+      <view class="bottom-action-btn consult-btn" bindtap="onConsult">
+        <image class="action-btn-icon" src="https://cdn-icons-png.flaticon.com/512/2462/2462719.png" mode="aspectFit"></image>
+        <text>在线咨询</text>
+      </view>
+      <view class="bottom-action-btn plan-btn" bindtap="onPlanRoute">
+        <image class="action-btn-icon" src="https://cdn-icons-png.flaticon.com/512/2099/2099085.png" mode="aspectFit"></image>
+        <text>分享</text>
+      </view>
+      <view class="primary-btn" bindtap="onBookTour">
+        <text>立即预订</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 图片预览模态框 -->
+  <view class="photo-modal" wx:if="{{showPhotoModal}}" catchtouchmove="preventTouchMove">
+    <view class="modal-mask" bindtap="closePhotoModal"></view>
+    <view class="modal-content">
+      <swiper 
+        class="modal-swiper" 
+        current="{{currentPhotoIndex}}" 
+        bindchange="onSwiperChange"
+        indicator-dots="true"
+      >
+        <swiper-item wx:for="{{photoList}}" wx:key="id">
+          <image class="modal-image" src="{{item.url}}" mode="aspectFit"></image>
+        </swiper-item>
+      </swiper>
+      <view class="modal-footer">
+        <text class="photo-counter">{{currentPhotoIndex + 1}}/{{photoList.length}}</text>
+        <view class="modal-close" bindtap="closePhotoModal">
+          <image class="close-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828778.png" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

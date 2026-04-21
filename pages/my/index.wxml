@@ -1,0 +1,89 @@
+<!-- my.wxml -->
+<view class="container">
+  <!-- 功能列表 -->
+  <scroll-view class="function-list">
+  <!-- 用户信息区域 -->
+  <view class="user-section">
+    <view class="user-header">
+      <image class="user-avatar" src="https://img.icons8.com/color/96/000000/user.png"></image>
+      <view class="user-info">
+        <text class="user-name">旅行者</text>
+        <text class="user-desc">欢迎回到村落云游</text>
+      </view>
+      <view class="user-level">
+        <text class="level-text">Lv.3</text>
+        <text class="level-name">乡村探索者</text>
+      </view>
+    </view>
+  </view>
+    <!-- 我的旅程 -->
+    <view class="function-section">
+      <view class="section-header">
+        <text class="section-title">我的旅程</text>
+      </view>
+      <view class="function-grid">
+        <view class="function-item" bindtap="navigateToCollection">
+          <view class="function-icon-wrapper">
+            <image class="function-icon" src="https://img.icons8.com/color/96/000000/hearts.png"></image>
+          </view>
+          <text class="function-text">我的收藏</text>
+        </view>
+        <view class="function-item" bindtap="navigateToItinerary">
+          <view class="function-icon-wrapper">
+            <image class="function-icon" src="https://img.icons8.com/color/96/000000/route.png"></image>
+          </view>
+          <text class="function-text">我的攻略</text>
+        </view>
+        <view class="function-item" bindtap="navigateToOrders">
+          <view class="function-icon-wrapper">
+            <image class="function-icon" src="https://img.icons8.com/color/96/000000/booking.png"></image>
+          </view>
+          <text class="function-text">我的探索</text>
+        </view>
+        <view class="function-item" bindtap="navigateToHistory">
+          <view class="function-icon-wrapper">
+            <image class="function-icon" src="https://img.icons8.com/color/search.png"></image>
+          </view>
+          <text class="function-text">浏览历史</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 我的服务 -->
+    <view class="function-section">
+      <view class="section-header">
+        <text class="section-title">我的服务</text>
+      </view>
+      <view class="service-list">
+        <view class="service-item" bindtap="navigateToCustomerService">
+          <view class="service-item-left">
+            <image class="service-icon" src="https://img.icons8.com/color/96/000000/headset.png"></image>
+            <text class="service-text">联系客服</text>
+          </view>
+          <image class="service-arrow" src="https://img.icons8.com/color/96/000000/chevron-right.png"></image>
+        </view>
+        <view class="service-item" bindtap="navigateToFeedback">
+          <view class="service-item-left">
+            <image class="service-icon" src="https://img.icons8.com/color/96/000000/feedback.png"></image>
+            <text class="service-text">意见反馈</text>
+          </view>
+          <image class="service-arrow" src="https://img.icons8.com/color/96/000000/chevron-right.png"></image>
+        </view>
+        <view class="service-item" bindtap="navigateToHelp">
+          <view class="service-item-left">
+            <image class="service-icon" src="https://img.icons8.com/color/96/000000/help.png"></image>
+            <text class="service-text">帮助中心</text>
+          </view>
+          <image class="service-arrow" src="https://img.icons8.com/color/96/000000/chevron-right.png"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 版本信息 -->
+    <view class="version-info">
+      <text class="version-text">村落云游 v2.1.0</text>
+      <text class="copyright">© 2026 村落云游 保留所有权利</text>
+    </view>
+  </scroll-view>
+
+</view>

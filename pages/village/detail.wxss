@@ -1,0 +1,576 @@
+/* pages/village/detail.wxss */
+/* 基础样式 */
+page {
+  background-color: #f8fcf9;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  color: #333;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  padding-bottom: 20rpx;
+}
+
+.nav-back, .nav-share {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.back-icon, .share-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.nav-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+}
+
+/* 主要内容区域 */
+.main-content {
+  flex: 1;
+  width: 100%;
+  padding-bottom: 140rpx;
+  display: flex;
+  flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+/* 村落主图 */
+.village-hero {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx; /* 减小底部外边距 */
+  box-shadow: 0 8rpx 20rpx rgba(144, 202, 180, 0.15); /* 减小阴影强度 */
+  width: calc(100% - 40rpx); /* 让卡片宽度收缩，两边留出20rpx边距 */
+  position: relative;
+  margin-bottom: 20rpx;
+  margin-left: 20rpx; /* 与搜索框对齐 */
+  margin-right: 20rpx; /* 与搜索框对齐 */
+  padding: 0; /* 移除内边距，让内容紧贴边框 */
+  box-sizing: border-box;
+  overflow: hidden; /* 确保圆角裁剪内容 */
+}
+
+.hero-image {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200rpx;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.village-name {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+  max-width: 60%;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20rpx;
+  padding: 12rpx 20rpx;
+  min-width: 100rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.action-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-bottom: 8rpx;
+}
+
+.action-text {
+  font-size: 22rpx;
+  color: #4a9c7a;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* 信息卡片通用样式 */
+.info-card {
+  width: calc(100% - 40rpx);
+  margin: 0 auto 20rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(144, 202, 180, 0.1);
+  border: 1rpx solid #e0f0e8;
+  box-sizing: border-box;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1a6840;
+}
+
+.see-all {
+  font-size: 24rpx;
+  color: #4a9c7a;
+  font-weight: 500;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  background-color: #e8f5ef;
+}
+
+/* 标签样式 */
+.village-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+  margin-bottom: 30rpx;
+}
+
+.tag-item {
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1rpx solid transparent;
+}
+
+.tag-guzhen {
+  background-color: #e8f5ef;
+  border-color: #b8d9c9;
+}
+
+.tag-heritage {
+  background-color: #fff3e6;
+  border-color: #ffd8b3;
+}
+
+.tag-photo {
+  background-color: #e6f7ff;
+  border-color: #b3e0ff;
+}
+
+.tag-text {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #4a9c7a;
+  white-space: nowrap;
+}
+
+.tag-heritage .tag-text {
+  color: #e67e22;
+}
+
+.tag-photo .tag-text {
+  color: #3498db;
+}
+
+/* 信息项样式 */
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25rpx;
+  width: 100%;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.info-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #888;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  display: block;
+}
+
+/* 村落介绍 */
+.village-description {
+  width: 100%;
+}
+
+.description-text {
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* 特色亮点 */
+.highlights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25rpx;
+  width: 100%;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.highlight-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8fcf9;
+  border-radius: 12rpx;
+  border: 1rpx solid #e0f0e8;
+}
+
+.highlight-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.highlight-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a6840;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.highlight-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+  display: block;
+}
+
+/* 图片展示 */
+.photo-gallery {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.photo-list {
+  display: inline-flex;
+  gap: 20rpx;
+}
+
+.photo-item {
+  display: inline-flex;
+  flex-direction: column;
+  width: 300rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12rpx 20rpx;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: #ffffff;
+  font-size: 22rpx;
+  font-weight: 500;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+/* 实用贴士 */
+.tips-card {
+  background-color: #e8f5ef;
+  border-color: #b8d9c9;
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  width: 100%;
+}
+
+.tip-item {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.tip-index {
+  font-size: 24rpx;
+  color: #4a9c7a;
+  font-weight: 600;
+  margin-right: 12rpx;
+  flex-shrink: 0;
+  width: 30rpx;
+}
+
+.tip-content {
+  font-size: 26rpx;
+  color: #555;
+  line-height: 1.5;
+  flex: 1;
+  min-width: 0;
+}
+
+/* 底部间距 */
+.bottom-space {
+  height: 20rpx;
+  width: 100%;
+}
+
+/* 底部操作栏 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  background-color: #ffffff;
+  border-top: 1rpx solid #e0e0e0;
+  box-shadow: 0 -2rpx 20rpx rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.bottom-actions {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  height: 100%;
+}
+
+.bottom-action-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: #f8fcf9;
+  border-radius: 12rpx;
+  border: 1rpx solid #d0e8dc;
+  color: #4a9c7a;
+  font-size: 24rpx;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.bottom-action-btn:active {
+  background-color: #e8f5ef;
+  transform: translateY(2rpx);
+}
+
+.action-btn-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-bottom: 8rpx;
+}
+
+.primary-btn {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(to right, #4a9c7a, #6ba889);
+  border-radius: 12rpx;
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.primary-btn:active {
+  opacity: 0.9;
+  transform: translateY(2rpx);
+}
+
+/* 图片预览模态框 */
+.photo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-swiper {
+  width: 100%;
+  height: 70%;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modal-footer {
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+.photo-counter {
+  font-size: 28rpx;
+  color: #ffffff;
+  font-weight: 500;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.modal-close {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+}
+
+.close-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* 响应式调整 */
+@media (max-width: 480rpx) {
+  .nav-header {
+    padding: 0 20rpx;
+    height: 80rpx;
+  }
+  
+  .nav-title {
+    font-size: 30rpx;
+  }
+  
+  .village-name {
+    font-size: 40rpx;
+  }
+  
+  .info-card {
+    width: calc(100% - 30rpx);
+    padding: 25rpx;
+  }
+  
+  .card-title {
+    font-size: 30rpx;
+  }
+  
+  .bottom-bar {
+    height: 110rpx;
+    padding: 15rpx 20rpx;
+  }
+  
+  .primary-btn {
+    font-size: 26rpx;
+  }
+}

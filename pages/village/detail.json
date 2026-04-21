@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "村落详情",
+  "navigationBarBackgroundColor": "#4a9c7a",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#f8fcf9",
+  "backgroundColorTop": "#f8fcf9",
+  "backgroundColorBottom": "#f8fcf9"
+}

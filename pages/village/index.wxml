@@ -1,0 +1,34 @@
+<!-- scenic-spots.wxml -->
+<view class="container">
+<!-- 搜索栏 -->
+  <view class="search-box">
+    <view class="search-input">
+      <image class="search-icon" src="https://img.icons8.com/color/96/000000/search.png"></image>
+      <input type="text" placeholder="搜索村落、景点、民宿..." placeholder-class="placeholder" />
+    </view>
+  </view>
+  
+  <!-- 村落景区列表 -->
+    <view class="recommend-list">
+      <view class="recommend-item" wx:for="{{scenicSpots}}" wx:key="id" bindtap="onScenicTap" data-id="{{item.id}}">
+        <image class="recommend-img" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="recommend-content">
+          <view class="recommend-info">
+            <text class="recommend-title">{{item.name}}</text>
+            <view class="recommend-tags">
+              <text class="tag" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+            </view>
+            <view class="recommend-desc">{{item.description}}</view>
+            <view class="recommend-footer">
+              <view class="recommend-location">
+                <image class="location-icon" src="https://cdn-icons-png.flaticon.com/512/684/684908.png" mode="aspectFit"></image>
+                <text class="location-text">{{item.location}}</text>
+              </view>
+              <view class="recommend-distance">{{item.distance}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+</view>

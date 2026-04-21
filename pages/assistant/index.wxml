@@ -1,0 +1,225 @@
+<!-- 页面容器 -->
+<view class="container">
+  <!-- 主要内容区域 -->
+  <scroll-view class="main-content" scroll-y>
+    <!-- 输入区域 -->
+    <view class="input-section">
+      <view class="section-header">
+        <text class="section-title">1.规划您的村落之旅</text>
+      </view>
+      <text class="section-desc">请输入您想游览的村落名称或相关信息，AI助手将为您生成个性化攻略</text>
+      
+      <view class="input-container">
+        <textarea 
+          id="villageInput" 
+          class="village-input" 
+          placeholder="例如：浙江丽水古堰画乡三日游、安徽宏村两日游、云南梯田村落摄影之旅..."
+          placeholder-class="placeholder"
+          value="{{inputText}}"
+          bindinput="onInputChange"
+          maxlength="500"
+        ></textarea>
+        <view class="input-footer">
+          <view class="input-tips">
+            <image class="tip-icon" src="https://img.icons8.com/color/96/000000/idea.png"></image>
+            <text class="tip-text">输入越详细，攻略越精准</text>
+          </view>
+          <text class="char-count">{{inputText.length}}/500</text>
+        </view>
+      </view>
+      
+      <view class="quick-options">
+        <text class="quick-title">快速选择：</text>
+        <view class="quick-buttons">
+          <view 
+            class="quick-btn {{quickSelected === 0 ? 'selected' : ''}}" 
+            bindtap="onQuickSelect" 
+            data-index="0"
+            data-text="浙江古村落三日游"
+          >
+            <text>浙江古村落三日游</text>
+          </view>
+          <view 
+            class="quick-btn {{quickSelected === 1 ? 'selected' : ''}}" 
+            bindtap="onQuickSelect" 
+            data-index="1"
+            data-text="安徽徽派建筑两日游"
+          >
+            <text>安徽徽派建筑两日游</text>
+          </view>
+          <view 
+            class="quick-btn {{quickSelected === 2 ? 'selected' : ''}}" 
+            bindtap="onQuickSelect" 
+            data-index="2"
+            data-text="云南梯田摄影之旅"
+          >
+            <text>云南梯田摄影之旅</text>
+          </view>
+          <view 
+            class="quick-btn {{quickSelected === 3 ? 'selected' : ''}}" 
+            bindtap="onQuickSelect" 
+            data-index="3"
+            data-text="福建土楼文化体验"
+          >
+            <text>福建土楼文化体验</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="generate-section">
+        <button 
+          class="generate-btn" 
+          bindtap="onGenerateItinerary"
+          disabled="{{!inputText || isLoading}}"
+        >
+          <image class="btn-icon" src=""></image>
+          <text>生成AI攻略</text>
+        </button>
+        <text class="generate-hint">点击生成，AI将为您规划专属村落旅行方案</text>
+      </view>
+    </view>
+
+    <!-- 攻略输出区域 -->
+    <view class="output-section">
+      <view class="section-header">
+        <text class="section-title">2.AI生成的村落云游攻略</text>
+      </view>
+      
+      <view class="output-container {{!hasResult ? 'empty' : ''}}">
+        <!-- 空状态 -->
+        <view class="empty-state" wx:if="{{!hasResult}}">
+          <image class="empty-icon" src="https://img.icons8.com/color/96/000000/compass.png"></image>
+          <text class="empty-title">等待生成您的村落云游攻略</text>
+          <text class="empty-desc">输入村落信息后点击"生成AI攻略"按钮，AI助手将为您创建个性化旅行方案</text>
+        </view>
+        
+        <!-- 攻略内容 -->
+        <view class="itinerary-output" wx:if="{{hasResult}}">
+          <view class="itinerary-header">
+            <text class="itinerary-title">{{itineraryData.title}}</text>
+            <view class="itinerary-meta">
+              <view class="meta-item">
+                <image class="meta-icon" src="https://img.icons8.com/color/96/000000/marker.png"></image>
+                <text class="meta-text">目的地：{{itineraryData.destination}}</text>
+              </view>
+              <view class="meta-item">
+                <image class="meta-icon" src="https://img.icons8.com/color/96/000000/calendar.png"></image>
+                <text class="meta-text">行程天数：{{itineraryData.days}}天</text>
+              </view>
+              <view class="meta-item">
+                <image class="meta-icon" src="https://img.icons8.com/color/96/000000/conference.png"></image>
+                <text class="meta-text">建议人数：{{itineraryData.people}}人</text>
+              </view>
+              <view class="meta-item">
+                <image class="meta-icon" src="https://img.icons8.com/color/96/000000/sun.png"></image>
+                <text class="meta-text">推荐季节：{{itineraryData.season}}</text>
+              </view>
+            </view>
+          </view>
+          
+          <!-- 每日行程 -->
+          <view class="day-sections">
+            <view class="day-section" wx:for="{{itineraryData.daysDetail}}" wx:key="day">
+              <view class="day-header">
+                <image class="day-icon" src="https://img.icons8.com/color/96/000000/date.png"></image>
+                <text class="day-title">第{{item.day}}天：{{item.title}}</text>
+              </view>
+              <view class="activities">
+                <view class="activity" wx:for="{{item.activities}}" wx:key="time">
+                  <view class="activity-time">
+                    <image class="time-icon" src="https://img.icons8.com/color/96/000000/clock.png"></image>
+                    <text>{{item.time}}</text>
+                  </view>
+                  <text class="activity-desc">{{item.desc}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          
+          <!-- 实用贴士 -->
+          <view class="tips-section">
+            <view class="tips-header">
+              <image class="tips-icon" src="https://img.icons8.com/color/96/000000/idea.png"></image>
+              <text class="tips-title">实用贴士</text>
+            </view>
+            <view class="tips-list">
+              <view class="tip-item" wx:for="{{itineraryData.tips}}" wx:key="*this">
+                <text class="tip-index">{{index + 1}}.</text>
+                <text class="tip-content">{{item}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 操作按钮 -->
+      <view class="action-buttons" wx:if="{{hasResult}}">
+        <button class="action-btn copy-btn" bindtap="onCopyItinerary">
+          <image class="action-icon" src="https://img.icons8.com/color/96/000000/copy.png"></image>
+          <text>复制攻略</text>
+        </button>
+        <button class="action-btn save-btn" bindtap="onSaveItinerary">
+          <image class="action-icon" src="https://img.icons8.com/color/96/000000/save.png"></image>
+          <text>保存攻略</text>
+        </button>
+        <button class="action-btn share-btn" bindtap="onShareItinerary">
+          <image class="action-icon" src="https://img.icons8.com/color/96/000000/share.png"></image>
+          <text>分享攻略</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 特色功能 -->
+    <view class="features-section">
+      <view class="section-header">
+        <text class="section-title">AI助手特色功能</text>
+      </view>
+      
+      <view class="features-grid">
+        <view class="feature-card">
+          <view class="feature-icon-wrapper">
+            <image class="feature-icon" src="https://img.icons8.com/color/96/000000/route.png"></image>
+          </view>
+          <text class="feature-title">智能行程规划</text>
+          <text class="feature-desc">根据您的需求自动规划合理行程路线</text>
+        </view>
+        <view class="feature-card">
+          <view class="feature-icon-wrapper">
+            <image class="feature-icon" src="https://img.icons8.com/color/96/000000/restaurant.png"></image>
+          </view>
+          <text class="feature-title">地道美食推荐</text>
+          <text class="feature-desc">推荐当地特色美食和最佳品尝地点</text>
+        </view>
+        <view class="feature-card">
+          <view class="feature-icon-wrapper">
+            <image class="feature-icon" src="https://img.icons8.com/color/96/000000/camera.png"></image>
+          </view>
+          <text class="feature-title">最佳摄影点</text>
+          <text class="feature-desc">标记村落最佳摄影位置和时间建议</text>
+        </view>
+        <view class="feature-card">
+          <view class="feature-icon-wrapper">
+            <image class="feature-icon" src="https://img.icons8.com/color/96/000000/home.png"></image>
+          </view>
+          <text class="feature-title">特色民宿推荐</text>
+          <text class="feature-desc">推荐具有当地特色的优质民宿客栈</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 加载遮罩 -->
+  <view class="loading-overlay" wx:if="{{isLoading}}">
+    <view class="loading-content">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">AI正在为您生成攻略</text>
+      <text class="loading-desc">请稍候，我们正在为您规划最佳村落旅行方案...</text>
+    </view>
+  </view>
+
+  <!-- 成功提示 -->
+  <view class="toast success-toast" wx:if="{{showSuccess}}">
+    <image class="toast-icon" src="https://img.icons8.com/color/96/000000/checkmark.png"></image>
+    <text class="toast-text">攻略生成成功！</text>
+  </view>
+</view>
