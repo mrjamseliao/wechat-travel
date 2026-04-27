@@ -1,11 +1,11 @@
 <!-- index.wxml -->
 <view class="container">
   <!-- 搜索框 -->
-  <view class="search-box">
+  <!-- <view class="search-box">
     <view class="search-input">
       <input type="text" placeholder="搜索村落、景点、民宿..." placeholder-class="placeholder" />
     </view>
-  </view>
+  </view> -->
   <!-- <view class="top-search-bar">
     <view class="city-section" bindtap="switchCity">
       <text class="city-name">{{currentCity}}</text>
@@ -26,6 +26,25 @@
       />
     </view>
   </view> -->
+
+<!-- 自定义导航栏 -->
+<view class="custom-navbar" style="padding-top: {{statusBarHeight}}px;">
+  <view class="navbar-content" style="padding-top: {{navPaddingTop}}px;">
+    <!-- 左侧：城市选择 -->
+    <view class="nav-left" bindtap="selectCity">
+      <view class="city-name">{{cityList[currentCityIndex]}}</view>
+      <image class="arrow-icon" />
+    </view>
+    
+    <!-- 中间：搜索框（适当下移） -->
+    <view class="nav-center" bindtap="goSearch">
+      <view class="nav-search-box">
+        <image class="search-icon" />
+        <text class="search-placeholder">搜索村落、景点、民宿...</text>
+      </view>
+    </view>
+  </view>
+</view>
 
   <!-- 轮播图 -->
   <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="500" bindtap="viewAllPhotos">

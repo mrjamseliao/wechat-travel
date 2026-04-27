@@ -44,11 +44,95 @@ Page({
         description: '回归自然，体验田园生活'
       }
     ],
-    currentCity: '成都', // 默认城市
+    currentCityIndex: 0,  // 当前城市索引
+    cityList: ['成都', '北京', '上海', '广州', '深圳'],  // 城市列表
     userInfo: null,
     // 图片预览相关
-    showPhotoModal: false,
-    currentPhotoIndex: 0
+    showPhotoModal: true,
+    currentPhotoIndex: 0,
+    statusBarHeight: 10,
+    navbarHeight: 10, // 导航栏高度
+    navPaddingTop: 18, // 新增：导航栏内部上边距
+    separatorTop: 0, // 分隔线位置
+  },
+  onLoad() {
+    const systemInfo = wx.getSystemInfoSync();
+    const { statusBarHeight, platform } = systemInfo;
+    
+    let navbarHeight = 44;
+    if (platform === 'android') {
+      navbarHeight = 48;
+    }
+    
+    // 计算分隔线位置（在导航栏底部）
+    const separatorTop = statusBarHeight + navbarHeight;
+    
+    this.setData({
+      statusBarHeight: statusBarHeight,
+      navbarHeight: statusBarHeight + navbarHeight + 8, // 增加8px的padding
+      navPaddingTop: 8, // 给导航栏内容增加上边距
+      separatorTop: separatorTop
+    });
+  },
+
+  // 城市选择
+  selectCity() {
+    wx.showActionSheet({
+      itemList: this.data.cityList,
+      success: (res) => {
+        if (res.tapIndex !== undefined) {
+          // 1. 记录选择日志
+          console.log('选择了城市:', res.tapIndex, this.data.cityList[res.tapIndex]);
+          
+          // 2. 更新页面数据（关键！）
+          this.setData({
+            currentCityIndex: res.tapIndex
+          });
+          
+          // 3. 如果需要，可以执行其他操作
+          this.onCityChange(res.tapIndex);
+        }
+      },
+      fail: (err) => {
+        console.log('取消选择或选择失败:', err);
+      }
+    });
+  },
+  // 城市变更后的处理
+  onCityChange(cityIndex) {
+    const cityName = this.data.cityList[cityIndex];
+    
+    // 更新导航栏标题（如果有需要）
+    wx.setNavigationBarTitle({
+      title: cityName
+    });
+    
+    // 这里可以添加其他逻辑，比如重新加载该城市的数据
+    console.log('城市已切换为:', cityName);
+    
+    // 示例：重新加载该城市的村落数据
+    this.loadVillageData(cityIndex);
+  },
+// 加载村落数据示例
+loadVillageData(cityIndex) {
+  const cityName = this.data.cityList[cityIndex];
+  console.log(`开始加载${cityName}的村落数据...`);
+  
+  // 这里应该是实际的网络请求
+  // wx.request({
+  //   url: 'xxx',
+  //   data: { city: cityName },
+  //   success: (res) => {
+  //     // 更新村落数据
+  //   }
+  // });
+},
+
+  // 跳转到搜索页
+  goSearch() {
+    wx.navigateTo({
+      url: '/pages/search/index'
+    });
   },
 
   onLoad: function() {

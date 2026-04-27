@@ -53,91 +53,108 @@ page {
   height: 100%;
 }
 
-/* 新增：顶部搜索栏样式 */
-.top-search-bar {
+/* 自定义导航栏样式 */
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #1a6840; /* 深绿色背景 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加轻微阴影，增强层次感 */
+}
+
+.navbar-content {
   display: flex;
   align-items: center;
-  background-color: #07C160; /* 截图一的主色调绿色 */
-  padding: 10rpx 30rpx;
-  height: 80rpx;
+  justify-content: space-between;
+  height: 54px; /* 导航栏标准高度 */
+  padding: 0 15px;
   box-sizing: border-box;
 }
 
-/* 城市选择部分 */
-.city-section {
+/* 左侧城市选择 */
+.nav-left {
   display: flex;
   align-items: center;
-  margin-right: 20rpx;
-  padding-right: 20rpx;
-  border-right: 1rpx solid rgba(255, 255, 255, 0.3);
-  min-width: 120rpx;
+  flex-shrink: 0;
+  margin-right: 10px;
+  /* 通过内边距微调位置 */
+  padding-top: 5;
+  height: 100%;  /* 撑满父容器高度 */
 }
+
 .city-name {
   color: #fff;
-  font-size: 32rpx;
-  font-weight: 500;
-  margin-right: 8rpx;
-}
-.city-arrow {
-  width: 24rpx;
-  height: 24rpx;
-}
-/* 搜索框部分 */
-.search-section {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  background-color: #fff;
-  border-radius: 40rpx;
-  padding: 0 20rpx;
-  height: 60rpx;
-}
-.search-icon {
-  width: 32rpx;
-  height: 32rpx;
-  margin-right: 15rpx;
-}
-.search-input {
-  flex: 1;
-  font-size: 28rpx;
-  height: 100%;
-  color: #333;
-}
-.placeholder {
-  color: #999;
-  font-size: 28rpx;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+  line-height: 1;  /* 去掉默认行高 */
 }
 
-/* 搜索框 */
-.search-box {
-  padding: 20rpx 30rpx;
-  background-color: #ffffff;
+.arrow-icon {
+  width: 12px;
+  height: 12px;
+  margin-left: 4px;
+  align-self: center;  /* 垂直居中 */
 }
 
-.search-input {
+/* 中间搜索框（核心） */
+.nav-center {
+  flex: 1;
+  max-width: 90%;
+  margin-top: 0px; /* 额外下移4px */
+  padding: 0;  /* 去掉内边距 */
+}
+
+.nav-search-box {
   display: flex;
   align-items: center;
-  background-color: #f8fcf9;
-  border-radius: 20rpx;
-  padding: 20rpx 30rpx;
-  border: 1rpx solid #d0e8dc;
+  background: rgba(255, 255, 255, 0.95); /* 提高不透明度 */
+  border-radius: 8px;
+  padding: 2px 8px; /* 增加内边距 */
+  margin: 0 5px;
+  width: 60%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2); /* 添加边框 */
 }
 
 .search-icon {
-  width: 20rpx;
-  height: 20rpx;
-  margin-right: 20rpx;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  opacity: 0.7;
+  flex-shrink: 0;  /* 防止压缩 */
 }
 
-.search-input input {
-  flex: 1;
-  font-size: 20rpx;
-  color: #333;
+.search-placeholder {
+  color: #666;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1;  /* 去掉行高影响 */
 }
 
-.placeholder {
-  color: #a8c9bb;
-  font-size: 28rpx;
+.scan-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.9;
+}
+
+/* 分隔线（可选） */
+.nav-separator {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 20%, 
+    rgba(255, 255, 255, 0.2) 80%, 
+    transparent 100%
+  );
+  z-index: 1001;
 }
 
 /* 轮播图 */
@@ -145,6 +162,7 @@ page {
   height: 400rpx;
   border-radius: 20rpx;
   margin: 0 30rpx 30rpx;
+  margin-top: 18%;
   overflow: hidden;
   box-shadow: 0 8rpx 30rpx rgba(144, 202, 180, 0.2);
 }
