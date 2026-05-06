@@ -13,11 +13,7 @@
     aria-haspopup="menu"
   >
     <view class="{{classPrefix}}__title {{prefix}}-class-label">{{item.label}}</view>
-    <t-icon
-      name="caret-down-small"
-      t-class="{{classPrefix}}__icon {{classPrefix}}__icon--{{activeIdx == index ? 'active' : ''}} {{prefix}}-class-icon"
-      aria-hidden="{{true}}"
-    />
+    <text class="{{classPrefix}}__icon {{classPrefix}}__icon--{{activeIdx == index ? 'active' : ''}} {{prefix}}-class-icon">▼</text>
   </view>
   <slot />
 </view>

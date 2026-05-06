@@ -137,6 +137,13 @@ let DropdownMenuItem = class DropdownMenuItem extends SuperComponent {
             onLeaved() {
                 this.setData({ wrapperVisible: false });
             },
+            handleSelect(e) {
+                const { value } = e.currentTarget.dataset;
+                this._trigger('change', { value });
+                if (!this.data.multiple) {
+                    this.closeDropdown();
+                }
+            },
         };
     }
 };

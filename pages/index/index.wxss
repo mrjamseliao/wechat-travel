@@ -2,55 +2,49 @@
 
 /* 全局样式 */
 page {
-  background-color: #f8fcf9;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+  background-color: #f5fbf7;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
-  padding-bottom: 20rpx;
+  background-color: #f5fbf7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100rpx;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  position: relative;
 }
 
 /* 头部样式 */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30rpx 30rpx 20rpx;
-  background-color: #ffffff;
-  box-shadow: 0 4rpx 20rpx rgba(144, 202, 180, 0.1);
+  background: linear-gradient(135deg, #4a9c7a 0%, #6ba889 100%);
+  padding: 30rpx 20rpx 40rpx;
+  border-radius: 0 0 30rpx 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(74, 156, 122, 0.3);
+  width: 100%;
+  max-width: 750rpx;
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header-content {
   display: flex;
   flex-direction: column;
-}
-
-.app-title {
-  font-size: 44rpx;
-  font-weight: 700;
-  color: #1a6840;
-  margin-bottom: 8rpx;
-}
-
-.app-subtitle {
-  font-size: 24rpx;
-  color: #6ba889;
-}
-
-.user-info {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  background-color: #e8f5ef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.user-avatar {
-  width: 100%;
-  height: 100%;
 }
 
 /* 自定义导航栏样式 */
@@ -60,17 +54,21 @@ page {
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: #1a6840; /* 深绿色背景 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加轻微阴影，增强层次感 */
+  background-color: #1a6840;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-top: calc(env(safe-area-inset-top, 0) + 20px);
+  padding-bottom: 1.5%;
+  min-height: calc(1.5% + env(safe-area-inset-top, 0) + 12px);
 }
 
 .navbar-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 54px; /* 导航栏标准高度 */
-  padding: 0 15px;
+  height: 5%;
+  padding: 0 2%;
   box-sizing: border-box;
+  margin-top: 8.5%;
 }
 
 /* 左侧城市选择 */
@@ -78,15 +76,12 @@ page {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  margin-right: 10px;
-  /* 通过内边距微调位置 */
-  padding-top: 5;
-  height: 100%;  /* 撑满父容器高度 */
+  margin-right: 3px;
 }
 
 .city-name {
   color: #fff;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   white-space: nowrap;
   line-height: 1;  /* 去掉默认行高 */
@@ -102,21 +97,20 @@ page {
 /* 中间搜索框（核心） */
 .nav-center {
   flex: 1;
-  max-width: 90%;
-  margin-top: 0px; /* 额外下移4px */
-  padding: 0;  /* 去掉内边距 */
+  max-width: 100%;
+  padding: 0;
 }
 
 .nav-search-box {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.95); /* 提高不透明度 */
-  border-radius: 8px;
-  padding: 2px 8px; /* 增加内边距 */
-  margin: 0 5px;
-  width: 60%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin: 0 3px;
+  flex: 1;
+  max-width: 63%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2); /* 添加边框 */
 }
 
 .search-icon {
@@ -162,7 +156,7 @@ page {
   height: 400rpx;
   border-radius: 20rpx;
   margin: 0 30rpx 30rpx;
-  margin-top: 18%;
+  margin-top: 30%;
   overflow: hidden;
   box-shadow: 0 8rpx 30rpx rgba(144, 202, 180, 0.2);
 }

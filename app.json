@@ -6,6 +6,7 @@
     "pages/village/detail",
     "pages/my/index"
   ],
+  "lazyCodeLoading": "requiredComponents",
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1a6840",
